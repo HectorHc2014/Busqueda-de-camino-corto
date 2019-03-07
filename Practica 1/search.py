@@ -99,9 +99,12 @@ def graph_search(problem, fringe):
     If two paths reach a state, only use the best one. [Fig. 3.18]"""
     closed = {}
     fringe.append(Node(problem.initial))
+    i=0
     while fringe:
+        i=i+1
         node = fringe.pop()
         if problem.goal_test(node.state):
+            print ("Nodos generados:"+str(i))
             return node
         if node.state not in closed:
             closed[node.state] = True
@@ -121,7 +124,8 @@ def depth_first_graph_search(problem):
 def branch_bound_search(problem):
     return graph_search(problem,SortedQueue())
 
-
+def brand_bound_heuris_search(problem):
+    return graph_search(problem,SortedQueueH(problem))
 # _____________________________________________________________________________
 # The remainder of this file implements examples for the search algorithms.
 

@@ -1,4 +1,4 @@
-
+import math
 #______________________________________________________________________________
 # Simple Data Structures: infinity, Dict, Struct
 
@@ -565,7 +565,31 @@ class SortedQueue(Queue):
     def pop(self):
         e =self.A.pop()
         return e
+class SortedQueueH(Queue):
+    """A First-In-First-Out Queue."""
 
+    def takePathCosth(self,elem):
+        return elem.path_cost + self.P.h(elem)
+
+    def __init__(self, problem):
+        self.A = []
+        self.P=problem
+        self.start = 0
+
+    def append(self, item):
+        self.A.append(item)
+
+    def __len__(self):
+        return len(self.A) - self.start
+
+    def extend(self, items):
+        self.A.extend(items)
+        self.A.sort(key=self.takePathCosth, reverse=True)
+
+
+    def pop(self):
+        e =self.A.pop()
+        return e
 
 ## Fig: The idea is we can define things like Fig[3,10] later.
 ## Alas, it is Fig[3,10] not Fig[3.10], because that would be the same as Fig[3.1]
